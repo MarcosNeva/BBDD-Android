@@ -72,6 +72,7 @@ class HomeFragment : Fragment() {
                 setState(cityState)
             }
         }
+        homeViewModel.getData()
     }
 
     private fun setState(cityState: CityState){

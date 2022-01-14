@@ -5,18 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.practica01.databinding.FragmentHomeBinding
 import com.example.practica01.presentation.viewmodel.HomeViewModel
 import com.example.practica01.presentation.viewmodel.HomeViewModelFactory
+import kotlinx.coroutines.flow.collect
 
 class HomeFragment : Fragment() {
+
     private val viewModel: HomeViewModel by viewModels {
         HomeViewModelFactory()
     }
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,10 +45,7 @@ class HomeFragment : Fragment() {
         when (homeState) {
             is HomeState.Failure -> {
                 binding.loadingProgressBar.isVisible = false
-                Toast.makeText(
-                    requireContext(), "Failure",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
             }
             HomeState.Loading -> binding.loadingProgressBar.isVisible = true
             is HomeState.Success -> {

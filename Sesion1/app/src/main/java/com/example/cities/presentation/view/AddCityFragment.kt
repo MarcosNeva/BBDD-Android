@@ -23,7 +23,7 @@ class AddCityFragment: DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val _binding = FragmentAddCityBinding.inflate(inflater, container, false)
+        _binding = FragmentAddCityBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,6 +45,6 @@ class AddCityFragment: DialogFragment() {
         val name = binding.nameEditText.text.toString()
         val description = binding.descriptionEditText.text.toString()
 
-        return City(id = System.currentTimeMillis().toInt(), name = name, description= description)
+        return City(id = System.currentTimeMillis().toInt(), name = name, description = description)
     }
 }
