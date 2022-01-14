@@ -6,6 +6,6 @@ import com.example.cities.domain.repository.CityRepository
 class GetCitiesUseCase(val repository: CityRepository) {
 
     fun getCities(): List<City>{
-        return repository.addCity(city)
+        return repository.getCities()
     }
 }

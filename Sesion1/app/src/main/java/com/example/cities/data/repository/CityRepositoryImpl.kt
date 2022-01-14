@@ -6,15 +6,19 @@ import com.example.cities.domain.repository.CityRepository
 class CityRepositoryImpl: CityRepository {
 
 
+    private val cities = getFakeData()
+
     override fun getCities(): List<City> {
-        TODO("Not yet implemented")
+        val newCities = mutableListOf<City>()
+        newCities.addAll(cities)
+        return newCities
     }
 
     override fun addCity(city: City) {
-       // cities.
+       cities.add(city)
     }
 
-    fun getFakeData() :List <City>{
+    private fun getFakeData() :MutableList <City>{
         val cities = mutableListOf<City>()
 
         cities.add(City(id=1, name = "Zaragoza", description ="Guay!"))

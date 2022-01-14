@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 
         childFragmentManager.setFragmentResultListener(ADD_CITY_REQUEST_KEY,viewLifecycleOwner){
             _, bundle -> val city : City? = bundle.getParcelable(CITY_KEY) as? City
-            city?.
+            city?.let { homeViewModel.addCity(it) }
         }
 
         binding.addCityButton.setOnClickListener{

@@ -13,7 +13,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel ( private val addCityUseCase: AddCityUseCase, private val getCitiesUseCase: GetCitiesUseCase): ViewModel() {
+class HomeViewModel (
+
+    private val addCityUseCase: AddCityUseCase,
+    private val getCitiesUseCase: GetCitiesUseCase
+    ): ViewModel() {
 
     private val citiesMutableStateFlow = MutableStateFlow<CityState>(Loading)
     val cityStateFlow: StateFlow<CityState> = citiesMutableStateFlow
@@ -23,7 +27,7 @@ class HomeViewModel ( private val addCityUseCase: AddCityUseCase, private val ge
     fun getData(){
         viewModelScope.launch {
             delay(1000)
-            val newCities = mutableListOf<City>()
+            val newCities = getCitiesUseCase.getCities()
             citiesMutableStateFlow.emit(Success(newCities))
         }
 
