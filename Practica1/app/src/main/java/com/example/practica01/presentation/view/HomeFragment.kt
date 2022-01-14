@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.practica01.databinding.FragmentHomeBinding
+import com.example.practica01.presentation.viewmodel.HomeState
 import com.example.practica01.presentation.viewmodel.HomeViewModel
 import com.example.practica01.presentation.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.flow.collect

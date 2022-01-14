@@ -1,4 +1,4 @@
-package com.example.practica01.presentation.view
+package com.example.practica01.presentation.viewmodel
 
 import com.example.practica01.domain.PracticeData
 

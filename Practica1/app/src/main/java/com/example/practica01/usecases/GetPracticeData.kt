@@ -1,4 +1,10 @@
 package com.example.practica01.usecases
 
-class GetPracticeData {
+import com.example.practica01.domain.PracticeData
+import com.example.practica01.domain.PracticeRepository
+
+class GetPracticeData(private val practiceRepository: PracticeRepository) {
+    fun getPracticeData(): PracticeData {
+        return practiceRepository.getPracticeData()
+    }
 }

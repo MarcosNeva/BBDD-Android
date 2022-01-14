@@ -29,6 +29,14 @@
         android:hint="@string/description"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <EditText
+        android:id="@+id/sunshineHoursEditText"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/sunshineHours"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <Button
         android:id="@+id/saveButton"
         android:text="@string/save"
