@@ -18,23 +18,31 @@ class HomeViewModel(
     private val updatePracticeData: UpdatePracticeData,
     private val deletePracticeData: DeletePracticeData
 ) : ViewModel() {
-    private val practiceMutableStateFlow: MutableStateFlow<HomeState> =
-        MutableStateFlow(HomeState.Loading)
+
+    private val practiceMutableStateFlow: MutableStateFlow<HomeState> = MutableStateFlow(HomeState.Loading)
     val practiceStateFlow: StateFlow<HomeState> = practiceMutableStateFlow
+
     fun getData() {
         viewModelScope.launch {
-            delay(3000) //Simulating network request
+            practiceMutableStateFlow.emit(HomeState.Loading)
+            //delay(3000) //Simulating network request
             val practiceData = getPracticeData.getPracticeData()
             practiceMutableStateFlow.emit(HomeState.Success(practiceData))
         }
     }
+
     fun addData(practiceData: PracticeData) {
         addPracticeData.addPracticeData(practiceData)
+        getData()
     }
+
     fun updateData(practiceData: PracticeData) {
         updatePracticeData.updatePracticeData(practiceData)
+        getData()
     }
+
     fun deleteData() {
         deletePracticeData.deletePracticeData()
+        getData()
     }
 }

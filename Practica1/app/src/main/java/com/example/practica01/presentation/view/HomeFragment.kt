@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.practica01.databinding.FragmentHomeBinding
+import com.example.practica01.domain.PracticeData
 import com.example.practica01.presentation.viewmodel.HomeState
 import com.example.practica01.presentation.viewmodel.HomeViewModel
 import com.example.practica01.presentation.viewmodel.HomeViewModelFactory
@@ -18,7 +19,7 @@ import kotlinx.coroutines.flow.collect
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory()
+        HomeViewModelFactory(requireContext())
     }
 
     private var _binding: FragmentHomeBinding? = null
@@ -40,6 +41,19 @@ class HomeFragment : Fragment() {
             }
         }
         viewModel.getData()
+        setButtons()
+    }
+
+    private fun setButtons() {
+        binding.addDataButton.setOnClickListener {
+            addData()
+        }
+        binding.deleteDataButton.setOnClickListener {
+            deleteData()
+        }
+        binding.updateDataButton.setOnClickListener {
+            updateData()
+        }
     }
 
     private fun setState(homeState: HomeState) {
@@ -54,6 +68,22 @@ class HomeFragment : Fragment() {
                 binding.homeTextView.text = homeState.practiceData.name
             }
         }
+    }
+
+    private fun addData() {
+        val name = binding.dataEditText.text.toString()
+        val practiceData = PracticeData(name)
+        viewModel.addData(practiceData)
+    }
+
+    private fun updateData() {
+        val name = binding.dataEditText.text.toString()
+        val practiceData = PracticeData(name)
+        viewModel.updateData(practiceData)
+    }
+
+    private fun deleteData() {
+        viewModel.deleteData()
     }
 
     companion object {
