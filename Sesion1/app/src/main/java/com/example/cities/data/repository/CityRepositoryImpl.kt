@@ -9,6 +9,8 @@ import com.example.cities.domain.repository.CityRepository
 const val CITIES_PREFERENCE = "Cities_Preferences"
 const val CITY_FILTER_KEY = "CityFilterKey"
 
+const val CITIES_DATA_STORAGE = "CITIES_DATA_STORAGE"
+
 class CityRepositoryImpl (private val sharedPreferences: SharedPreferences): CityRepository {
 
 
