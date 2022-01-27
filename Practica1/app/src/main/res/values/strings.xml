@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Practica01</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bt_delete_data">Delete name</string>
-    <string name="bt_update_data">Update name</string>
-    <string name="bt_add_data">Add name</string>
+    <string name="btn_delete_data">Delete name</string>
+    <string name="btn_update_data">Update name</string>
+    <string name="btn_add_data">Add name</string>
     <string name="et_enter_data">Enter your name</string>
 </resources>
