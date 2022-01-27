@@ -14,11 +14,12 @@ import com.example.practica01.presentation.viewmodel.HomeState
 import com.example.practica01.presentation.viewmodel.HomeViewModel
 import com.example.practica01.presentation.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.flow.collect
+import com.example.practica01.domain.PracticeData
 
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory()
+        HomeViewModelFactory(requireContext())
     }
 
     private var _binding: FragmentHomeBinding? = null
@@ -40,13 +41,14 @@ class HomeFragment : Fragment() {
             }
         }
         viewModel.getData()
+        setButtons()
     }
 
     private fun setState(homeState: HomeState) {
         when (homeState) {
             is HomeState.Failure -> {
                 binding.loadingProgressBar.isVisible = false
-                Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Fallo", Toast.LENGTH_SHORT).show()
             }
             HomeState.Loading -> binding.loadingProgressBar.isVisible = true
             is HomeState.Success -> {
@@ -54,6 +56,34 @@ class HomeFragment : Fragment() {
                 binding.homeTextView.text = homeState.practiceData.name
             }
         }
+    }
+
+    private fun setButtons() {
+        binding.addDataButton.setOnClickListener {
+            addData()
+        }
+        binding.deleteDataButton.setOnClickListener {
+            deleteData()
+        }
+        binding.updateDataButton.setOnClickListener {
+            updateData()
+        }
+    }
+
+    private fun addData() {
+        val name = binding.dataEditText.text.toString()
+        val practiceData = PracticeData(name)
+        viewModel.addData(practiceData)
+    }
+
+    private fun updateData() {
+        val name = binding.dataEditText.text.toString()
+        val practiceData = PracticeData(name)
+        viewModel.updateData(practiceData)
+    }
+
+    private fun deleteData() {
+        viewModel.deleteData()
     }
 
     companion object {

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Practica01</string>
-    <string name="hello_blank_fragment">Hello</string>
+    <string name="hello_blank_fragment">TEXTO DE EJEMPLO</string>
+    <string name="btn_delete_data">Eliminar datos</string>
+    <string name="btn_update_data">Update datos</string>
+    <string name="btn_add_data">Añadir datos</string>
+    <string name="et_enter_data">Introduce datos</string>
 </resources>

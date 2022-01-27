@@ -1,13 +1,27 @@
 package com.example.practica01.domain
 
-class PracticeDataRepositoryImpl : PracticeRepository {
-    override fun getPracticeData(): PracticeData {
-        return PracticeData("Práctica 03")
+
+import com.example.practica01.data.datastore.PracticeDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+class PracticeDataRepositoryImpl(private val dataStore: PracticeDataStore) : PracticeRepository {
+
+    override fun getPracticeData(): Flow<PracticeData> {
+        return dataStore.getDataStoreData().map { practiceName ->
+            PracticeData(practiceName)
+        }
     }
-    override fun addPracticeData(practiceData: PracticeData) {
+
+    override suspend fun addPracticeData(practiceData: PracticeData) {
+        dataStore.addDataStoreData(practiceData.name)
     }
-    override fun deletePracticeData() {
+
+    override suspend fun deletePracticeData() {
+        dataStore.deleteDataStoreData()
     }
-    override fun updatePracticeData(practiceData: PracticeData) {
+
+    override suspend fun updatePracticeData(practiceData: PracticeData) {
+        dataStore.updateDataStoreData(practiceData.name)
     }
 }
